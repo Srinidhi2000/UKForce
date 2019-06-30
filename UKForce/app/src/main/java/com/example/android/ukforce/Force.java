@@ -3,7 +3,7 @@ package com.example.android.ukforce;
 public class Force {
     private String name;
     private String id;
-    public Force(String forcename,String forceid)
+    public Force(String forceid,String forcename)
     { name=forcename;
       id=forceid;
     }

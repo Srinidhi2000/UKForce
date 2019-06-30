@@ -9,13 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class forceadapter extends ArrayAdapter<Force>{
     public forceadapter(Context context, List<Force> forces) {
         super(context, 0,forces);
     }
-
 
     @NonNull
     @Override
@@ -25,11 +25,16 @@ public class forceadapter extends ArrayAdapter<Force>{
        {listitemView=LayoutInflater.from(getContext()).inflate(R.layout.force_list_item,parent,false);
        }
          Force current=getItem(position);
+
        TextView force_id=(TextView)listitemView.findViewById(R.id.force_id);
        TextView force_name=(TextView)listitemView.findViewById(R.id.force_name);
-       force_id.setText(current.getforcename());
-       force_name.setText(current.getforceid());
+       force_id.setText(current.getforceid());
+       force_name.setText(current.getforcename());
 
         return listitemView;
         }
-}
+
+
+        }
+
+

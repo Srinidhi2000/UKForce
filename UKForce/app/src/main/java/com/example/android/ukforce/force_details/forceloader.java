@@ -1,7 +1,9 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.force_details;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.support.annotation.Nullable;
+
+import com.example.android.ukforce.Connect;
 
 import java.util.List;
 

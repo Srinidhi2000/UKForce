@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             tools:text="url"
             android:id="@+id/url"
+            android:onClick="formoreinfo"
             android:textColor="#01579b"
             />
     </LinearLayout>

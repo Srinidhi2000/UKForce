@@ -1,4 +1,4 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.force_details;
 
 public class Force {
     private String name;

@@ -1,4 +1,4 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.force_details;
 
 import android.content.Context;
 import android.app.LoaderManager;
@@ -17,9 +17,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.example.android.ukforce.EnterCrimedetails;
+import com.example.android.ukforce.R;
+import com.example.android.ukforce.specificforce_details.specificforceactivity;
+
 import java.util.ArrayList;
 import java.util.List;
-
+//TO DISPLAY THE LIST OF FORCES IN UK
 public class forceactivity extends AppCompatActivity implements LoaderCallbacks<List<Force>> {
     private TextView Emptystate;
     private forceadapter adapter;
@@ -107,10 +112,10 @@ searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
     @Override
     public boolean onQueryTextChange(String newText) {
         l2.clear();
-        String word=newText;
+        String word=newText.toUpperCase();
         for(int i=0;i<l1.size();i++)
         {
-            if(l1.get(i).getforceid().contains(word))
+            if(l1.get(i).getforcename().toUpperCase().contains(word))
             {
                 l2.add(l1.get(i));
                 Emptystate.setVisibility(View.GONE);
@@ -125,5 +130,14 @@ searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 return true;
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.viewcrime)
+        {  Intent intent=new Intent(this,EnterCrimedetails.class);
+           startActivity(intent);
+           return true;
+           }
+        return super.onOptionsItemSelected(item);
+    }
 }

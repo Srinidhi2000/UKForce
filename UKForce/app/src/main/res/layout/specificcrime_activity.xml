@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/head"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fav_icon"
+        android:onClick="selectstar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="month"
+        android:id="@+id/month"
+        android:paddingRight="8dp"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Name"
+        android:layout_below="@id/head"
+        android:id="@+id/crime_name"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Category"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:layout_below="@id/crime_name"
+       android:layout_centerHorizontal="true"
+        android:id="@+id/category"
+        android:paddingLeft="8dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location Of Crime"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:id="@+id/location"
+        android:layout_marginBottom="6dp"
+        android:layout_below="@id/category"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="8dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location"
+        android:id="@+id/lat">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitude: "
+            android:textColor="@android:color/black"
+            android:id="@+id/l1"
+            android:textStyle="bold"
+            android:paddingLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/crime_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:textColor="@android:color/black"
+            tools:text="Latitude" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/lat"
+    android:id="@+id/lng">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude: "
+        android:id="@+id/l2"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:paddingLeft="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Longitude"
+        android:textColor="@android:color/black"
+        android:id="@+id/crime_longitude"
+        android:paddingLeft="8dp"/>
+</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Operation under"
+        android:id="@+id/operation"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/lng"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="location subtype"
+      android:textColor="@android:color/black"
+
+      android:layout_below="@id/operation"
+      android:id="@+id/location_subtype"
+      android:paddingLeft="8dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        tools:text="context"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/location_subtype"
+        android:id="@+id/crime_context"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIQUE CRIME ID "
+            android:textColor="@android:color/black"
+            android:layout_below="@id/crime_context"
+            android:id="@+id/crimeidtext"
+            android:textStyle="bold"/>
+
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="ID"
+         android:layout_below="@id/crimeidtext"
+        android:textColor="@color/forcedetails"
+        android:id="@+id/ID"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/ID"
+        android:id="@+id/layout"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/empty"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

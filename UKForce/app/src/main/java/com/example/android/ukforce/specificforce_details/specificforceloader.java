@@ -1,10 +1,10 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.specificforce_details;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.example.android.ukforce.Connect;
 
 
 public class specificforceloader extends AsyncTaskLoader<Specificforce> {
@@ -13,7 +13,6 @@ public class specificforceloader extends AsyncTaskLoader<Specificforce> {
         super(context);
         Url=givenurl;
     }
-
     @Override
     protected void onStartLoading() {forceLoad();
     }

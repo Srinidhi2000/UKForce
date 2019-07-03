@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/typeoption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#e1f5fe"
+        android:orientation="vertical"
+        android:padding="8dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            android:onClick="hide"
+            android:text="Hide box " />
+        <Button
+            android:id="@+id/button_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:onClick="showfavourites"
+            android:paddingHorizontal="8dp"
+            android:background="#303f9f"
+            android:textColor="@android:color/white"
+            android:text="Show favourites" />
+</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lat_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lattext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="LATITUDE : " />
+
+            <EditText
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/lattext"
+                android:inputType="numberSigned|numberDecimal"
+                android:layout_toRightOf="@id/lattext"
+                android:hint="Enter latitude" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/l_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lat_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LONGITUDE : " />
+
+            <EditText
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter longitude"
+                android:inputType="numberDecimal|numberSigned"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/month_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/l_layout">
+
+            <TextView
+                android:id="@+id/monthtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MONTH(Optional) : " />
+
+            <EditText
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="format (yyyy-mm)"
+                android:padding="10dp" />
+        </LinearLayout>
+
+
+            <Button
+                android:id="@+id/button_showcrime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showcrimelist"
+                android:paddingHorizontal="30dp"
+                android:background="#303f9f"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center_horizontal"
+                android:text="Show Crime list" />
+
+
+
+    </LinearLayout>
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/list"
+    android:paddingLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_below="@id/typeoption"
+    android:orientation="vertical"/>
+    <ProgressBar
+        android:id="@+id/loading"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/empty"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

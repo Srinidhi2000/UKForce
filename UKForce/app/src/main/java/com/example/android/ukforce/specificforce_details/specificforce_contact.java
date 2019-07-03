@@ -1,4 +1,4 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.specificforce_details;
 
 public class specificforce_contact {
     private String contacturl;

@@ -1,4 +1,4 @@
-package com.example.android.ukforce;
+package com.example.android.ukforce.specificforce_details;
 
 import android.content.Context;
 import android.app.LoaderManager;
@@ -8,26 +8,22 @@ import android.content.Loader;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-
+import com.example.android.ukforce.R;
+// TO DISPLAY A SPECIFIC FORCE'S DETAILS
 public class specificforceactivity extends AppCompatActivity implements LoaderCallbacks<Specificforce> {
     private static  String SPECIFIC_URL="null";
     ProgressBar loading;
+    String tosearch;
     ListView contact_listview;
     LinearLayout contactslayout;
     TextView emptystate,title,description,url,phone;
@@ -47,7 +43,6 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
         phone=(TextView)findViewById(R.id.phone);
         Intent intent=getIntent();
         SPECIFIC_URL=intent.getStringExtra("specificurl");
-
         ConnectivityManager connectivityManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo active=connectivityManager.getActiveNetworkInfo();
         if(active!=null&&active.isConnected())
@@ -59,9 +54,6 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
            loading.setVisibility(View.GONE);
             emptystate.setText("No internet connection.");
         }
-
-
-
     }
 
     @Override
@@ -73,7 +65,7 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
     public void onLoadFinished(Loader<Specificforce> loader, Specificforce data) {
 
         loading.setVisibility(View.GONE);
-        emptystate.setText("No earthquakes found");
+        emptystate.setText("No info found");
         if(data!=null)
         { title.setText(data.getName());
             if(data.getDescription()!="null") {
@@ -83,8 +75,17 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
             }phone.setText(data.getPhone());
              url.setText(data.getUrl());
              for(int i=0;i<(data.getContact().size());i++) {
-                 TextView url = new TextView(this);
-                 url.setText(data.getContact().get(i).getContacturl());
+                  final TextView urls = new TextView(this);
+                 urls.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         tosearch=(String) urls.getText();
+                         Uri current=Uri.parse(tosearch);
+                         Intent intent=new Intent(Intent.ACTION_VIEW,current);
+                         startActivity(intent);
+                     }
+                 });
+                 urls.setText(data.getContact().get(i).getContacturl());
                  TextView des = new TextView(this);
                  if(data.getContact().get(i).getContactdes()!="null") {
                  String newdes = removeextras(data.getContact().get(i).getContactdes());
@@ -95,12 +96,12 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
                 title.setText(data.getContact().get(i).getContacttitle());
                 contactslayout.addView(title);
                 contactslayout.addView(des);
-                contactslayout.addView(url);
+                contactslayout.addView(urls);
                 url.setPadding(8,0,0,30);
                 des.setPadding(8,0,0,8);
                 title.setPadding(8,0,0,8);
                 title.setTextColor(Color.BLACK);
-                url.setTextColor(Color.parseColor("#01579b"));
+                urls.setTextColor(Color.parseColor("#01579b"));
 
             }
 
@@ -120,4 +121,12 @@ public class specificforceactivity extends AppCompatActivity implements LoaderCa
         return newstring;
 
     }
+    public void formoreinfo(View view)
+    { tosearch=(String) url.getText();
+        Uri current=Uri.parse(tosearch);
+        Intent intent=new Intent(Intent.ACTION_VIEW,current);
+        startActivity(intent);
+
+    }
+
 }

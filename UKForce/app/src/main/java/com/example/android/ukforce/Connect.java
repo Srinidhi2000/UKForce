@@ -2,7 +2,10 @@ package com.example.android.ukforce;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.android.ukforce.force_details.Force;
+import com.example.android.ukforce.specificforce_details.Specificforce;
+import com.example.android.ukforce.specificforce_details.specificforce_contact;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,11 +21,9 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
+//HELPER CLASS
 public final class Connect {
     private Connect(){}
-    //public static final String LOGTAG = forceactivity.class.getName();
-    //public static final String LOGTAG1=Specificforce.class.getName();
     private static URL createUrl(String stringurl)
         { URL url=null;
         try{
@@ -158,6 +159,83 @@ public static Specificforce fetchspecificdata(String requestedUrl)
 Specificforce force=ExtractSpecificForce(jsonResponse);
     return  force;
 }
+    private static List<crime> extractcrimeJSON(String jsonResponse)
+    {
+        if (TextUtils.isEmpty(jsonResponse))
+        {
+            return null;
+        }
+        List<crime> crimes=new ArrayList<>();
+        try{
+            JSONArray root=new JSONArray(jsonResponse);
+            for(int i=0;i<root.length();i++)
+            { JSONObject one=root.getJSONObject(i);
+              String category=one.getString("category");
+              String location_type=one.getString("location_type");
+              String crime_context=one.getString("context");
+              String outcome=one.getString("outcome_status");
+              String id=one.getString("persistent_id");
+              String locationsubtype=one.getString("location_subtype");
+              String month=one.getString("month");
+              JSONObject location=one.getJSONObject("location");
+              String latitude=location.getString("latitude");
+              String longitude=location.getString("longitude");
+              JSONObject street=location.getJSONObject("street");
+              String name=street.getString("name");
+              crime Crimes=new crime(name,month,category,id,latitude,longitude,location_type,crime_context,locationsubtype,outcome);
+              crimes.add(Crimes);
+              }
+        }catch(JSONException e)
+        {Log.e("Connect","Problem in parsing",e);}
+        return crimes;
+    }
+    public static List<crime> fetchcrimedata(String requestedurl)
+    {
+        URL url =createUrl(requestedurl);
+        String jsonResponse=null;
+        try{ jsonResponse=makeHttpRequest(url);
+        }catch(IOException e){
+            Log.e("Connect","Problem making HTTP request",e);
+        }
+        List<crime> Crimes=extractcrimeJSON(jsonResponse);
+        return Crimes;
+    }
+    private static arrayoutcomes extractcrimeoutcomeJSON(String jsonResponse)
+    {
+        if (TextUtils.isEmpty(jsonResponse))
+        {
+            return null;
+        }
+        arrayoutcomes current=null;
+        ArrayList<crimeoutcome> crimes=new ArrayList<>();
+        try{ JSONObject root=new JSONObject(jsonResponse);
+              JSONArray out=root.getJSONArray("outcomes");
+              for(int i=0;i<out.length();i++)
+              { JSONObject outc=out.getJSONObject(i);
+                 JSONObject outco=outc.getJSONObject("category");
+                  String name=outco.getString("name");
+                  String date=outc.getString("date");
+                  String person_id=outc.getString("person_id");
+                  crimeoutcome c=new crimeoutcome(name,date,person_id);
+                  crimes.add(c);
+              }
+current=new arrayoutcomes(crimes);
+             }
+        catch(JSONException e)
+        {Log.e("Connect","Problem in parsing",e);}
+        return current;
+    }
+    public static arrayoutcomes fetchcrimeoutcomedata(String requestedurl)
+    {
+        URL url =createUrl(requestedurl);
+        String jsonResponse=null;
+        try{ jsonResponse=makeHttpRequest(url);
+        }catch(IOException e){
+            Log.e("Connect","Problem making HTTP request",e);
+        }
+        arrayoutcomes Crimes=extractcrimeoutcomeJSON(jsonResponse);
+        return Crimes;
+    }
 
 }
 
